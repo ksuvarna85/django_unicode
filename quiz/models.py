@@ -24,7 +24,10 @@ class Question(models.Model):
 		return self.question
 
 	def get_absolute_url(self):
-		return reverse("quiz:detail",kwargs={'pk':self.pk})
+		return reverse("quiz:list")
+
+
+
 
 
 

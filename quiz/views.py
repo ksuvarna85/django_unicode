@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,ListView,DetailView,CreateView,UpdateView,DeleteView
 from quiz import models
 from django.urls import reverse_lazy
-
+from quiz.forms import QuestionForm
 # Create your views here.
 
 class IndexView(TemplateView):
@@ -56,3 +56,15 @@ def question_detail(request,chp_pk):
         questions=models.Question.objects.filter(mcq_exam=chp_pk)
 
         return render(request,'quiz/detail.html',{'questions':questions})
+
+
+def questionform_view(request):
+    form=QuestionForm()
+    if request.method=="POST":
+        form=QuestionForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            return redirect('quiz:list')
+
+    return render(request,'quiz/question.html',{'form':form})

@@ -13,6 +13,8 @@ urlpatterns=[
     path('delete/<int:pk>/',views.ChapterDeleteView.as_view(),name='delete'),
     path('student/',views.student_chp_lst,name='list_fun'),
     path('student/<int:chp_pk>/',views.question_detail,name='detail_fun'),
+    path('addquestion/',views.questionform_view,name='add')
+
 
 
 
